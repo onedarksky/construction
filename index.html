@@ -524,7 +524,7 @@
     目前已改為 Google Sheets Apps Script 接收
     -->
 
-                         <form id="contactForm">
+                         <form id="contactForm" action="https://script.google.com/macros/s/AKfycbxNTnxwyWcOVzXNaWQV0KXVuemBHK8FxTgLr0PbpAJvar9Lit4tepmAtAjzTOUmHzzwoQ/exec" method="POST" target="hidden_iframe">
 
                              
                         <div class="form-group">
@@ -558,34 +558,14 @@
 <button type="submit" class="btn" style="border: none; width: 100%; cursor: pointer; font-size: 17px;">送出聯絡資料</button>
 </form>
 
+<iframe name="hidden_iframe" style="display:none;"></iframe>
+
 <script>
-document.getElementById("contactForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
-
-    const formData = new FormData(this);
-
-    const data = {
-        name: formData.get("name"),
-        phone: formData.get("phone"),
-        service: formData.get("service"),
-        message: formData.get("message")
-    };
-
-    try {
-        await fetch(
-            "https://script.google.com/macros/s/AKfycbxNTnxwyWcOVzXNaWQV0KXVuemBHK8FxTgLr0PbpAJvar9Lit4tepmAtAjzTOUmHzzwoQ/exec",
-            {
-                method: "POST",
-                body: JSON.stringify(data)
-            }
-        );
-
+document.getElementById("contactForm").addEventListener("submit", function() {
+    setTimeout(() => {
         alert("資料已送出，我們會盡快與您聯絡！");
         this.reset();
-
-    } catch (error) {
-        alert("送出失敗，請稍後再試");
-    }
+    }, 800);
 });
 </script>
                     
