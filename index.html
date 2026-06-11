@@ -516,7 +516,17 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form action="https://formspree.io/f/xkoavywe" method="POST">
+                    <!--
+    原 Formspree 設定：
+
+    <form action="https://formspree.io/f/xkoavywe" method="POST">
+
+    目前已改為 Google Sheets Apps Script 接收
+    -->
+
+                         <form id="contactForm">
+
+                             
                         <div class="form-group">
                             <label>您的姓名</label>
                             <input type="text" name="name" placeholder="請輸入姓名" required>
@@ -527,7 +537,11 @@
                         </div>
                         <div class="form-group">
                             <label>您的類別</label>
-                           <select name="category" required>
+                            
+                          <!-- 原 Formspree 設定  <select name="category" required>   
+                            目前已改為 Google Sheets Apps Script 接收 -->
+                          <select name="service" required>
+                              
                                 <option value="">-- 請選擇需求 --</option>
                                 <option value="學徒應徵">我想應徵學徒 (日薪1600起)</option>
                                 <option value="師傅應徵">我想應徵師傅/半師</option>
@@ -538,8 +552,43 @@
                             <label>簡短備註 (選填)</label>
                            <textarea name="message" rows="3" placeholder="例如：居住左營需要接送、預計何時可上班、或工程坪數..."></textarea>
                         </div>
-                        <button type="submit" class="btn" style="border: none; width: 100%; cursor: pointer; font-size: 17px;">送出聯絡資料</button>
-                    </form>
+                             
+                       <!-- 原 Formspree 設定    <button type="submit" class="btn" style="border: none; width: 100%; cursor: pointer; font-size: 17px;">送出聯絡資料</button>
+                    </form> 目前已改為 Google Sheets Apps Script 接收 -->
+<button type="submit" class="btn" style="border: none; width: 100%; cursor: pointer; font-size: 17px;">送出聯絡資料</button>
+</form>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    const data = {
+        name: formData.get("name"),
+        phone: formData.get("phone"),
+        service: formData.get("service"),
+        message: formData.get("message")
+    };
+
+    try {
+        await fetch(
+            "https://script.google.com/macros/s/AKfycbxNTnxwyWcOVzXNaWQV0KXVuemBHK8FxTgLr0PbpAJvar9Lit4tepmAtAjzTOUmHzzwoQ/exec",
+            {
+                method: "POST",
+                body: JSON.stringify(data)
+            }
+        );
+
+        alert("資料已送出，我們會盡快與您聯絡！");
+        this.reset();
+
+    } catch (error) {
+        alert("送出失敗，請稍後再試");
+    }
+});
+</script>
+                    
                 </div>
             </div>
         </div>
