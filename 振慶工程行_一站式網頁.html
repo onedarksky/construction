@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>振慶工程行 - 專業土木建築與泥作鋪設專家</title>
+    <style>
+        /* 全域重設與字型 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft JhengHei", sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafbfc;
+        }
+
+        /* 導覽列 */
+        header {
+            background-color: #1a252f;
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f39c12;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 25px;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #f39c12;
+        }
+
+        /* 主視覺區 (Hero) */
+        .hero {
+            background: linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.85)), url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            height: 85vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding-top: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 46px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 35px;
+            color: #bdc3c7;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #f39c12;
+            color: #fff;
+            padding: 14px 35px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        /* 區塊通用樣式 */
+        section {
+            padding: 90px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background-color: #f39c12;
+            border-radius: 2px;
+        }
+
+        /* 關於我們 */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 17px;
+            color: #555;
+            text-align: justify;
+        }
+
+        .about-info-list {
+            list-style: none;
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-top: 4px solid #2c3e50;
+        }
+
+        .about-info-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 15px;
+        }
+
+        .about-info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .about-info-list strong {
+            color: #34495e;
+            display: inline-block;
+            width: 110px;
+        }
+
+        .status-badge {
+            background-color: #2cc585;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        /* 核心技術 / 服務項目 */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 45px 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            border-bottom: 3px solid #f39c12;
+        }
+
+        .service-icon {
+            font-size: 45px;
+            color: #f39c12;
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 22px;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* 徵才區塊 */
+        .jobs-section {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+            padding: 50px 40px;
+            margin-top: 30px;
+            border-left: 6px solid #f39c12;
+        }
+
+        .jobs-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #f4f6f7;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .jobs-header h3 {
+            font-size: 24px;
+            color: #2c3e50;
+        }
+
+        .job-tag {
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .job-details h4, .job-welfare h4 {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .job-details h4::before, .job-welfare h4::before {
+            content: '■';
+            color: #f39c12;
+            margin-right: 8px;
+            font-size: 14px;
+        }
+
+        .job-details ul, .job-welfare ul {
+            list-style: none;
+        }
+
+        .job-details li, .job-welfare li {
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #555;
+            padding-left: 5px;
+        }
+
+        .job-details strong {
+            color: #333;
+        }
+
+        .rule-box {
+            background-color: #fdf2e9;
+            border: 1px dashed #e67e22;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        /* 聯絡我們 */
+        .contact-container {
+            background-color: #1a252f;
+            color: #fff;
+            padding: 50px 40px;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 40px;
+        }
+
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #f39c12;
+        }
+
+        .contact-details p {
+            margin-bottom: 18px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #全部白;
+        }
+
+        .contact-form input, .contact-form textarea, .contact-form select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #34495e;
+            background-color: #2c3e50;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+            outline: none;
+            border-color: #f39c12;
+        }
+
+        .contact-form input::placeholder, .contact-form textarea::placeholder {
+            color: #95a5a6;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: #111;
+            color: #7f8c8d;
+            text-align: center;
+            padding: 25px;
+            font-size: 14px;
+            border-top: 1px solid #222;
+        }
+
+        /* RWD 響應式調整 */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none; /* 手機版簡化導覽列 */
+            }
+            .about-grid, .jobs-grid, .contact-container {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            .jobs-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 導覽列 -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">振慶工程行</div>
+            <ul class="nav-menu">
+                <li><a href="#home">首頁</a></li>
+                <li><a href="#about">關於我們</a></li>
+                <li><a href="#services">核心技術</a></li>
+                <li><a href="#recruitment">人才招募</a></li>
+                <li><a href="#contact">應徵與洽詢</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 主視覺區 -->
+    <section id="home" class="hero" style="max-width: 100%; padding: 0;">
+        <div class="hero-content">
+            <h1>秉持專業．成就穩固基石</h1>
+            <p>政府核准設立・大高雄泥作與精細鋪設專業團隊</p>
+            <a href="#recruitment" class="btn">加入我們夥伴團隊</a>
+        </div>
+    </section>
+
+    <!-- 關於我們 -->
+    <section id="about">
+        <h2 class="section-title">關於振慶工程行</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>振慶工程行是一家具備政府合法核准設立、稅籍營業中之專業工程行。我們長期深耕於南部地區，以安全、品質、誠信為核心價值，致力於提供最完善的結構與泥作工程解決方案。</p>
+                <p>無論是細緻的室內地磚翻新、高難度大理石鋪設，或是基礎砌磚工程，負責人黃慶暉先生率領專業團隊，始終堅持精準施工、如期完工，以最嚴謹的態度完成業主所託，是您最值得信賴的工程夥伴。</p>
+            </div>
+            <div>
+                <ul class="about-info-list">
+                    <li><strong>商號名稱</strong> 振慶工程行</li>
+                    <li><strong>統一編號</strong> 00849199</li>
+                    <li><strong>代 表 人</strong> 黃慶暉</li>
+                    <li><strong>開業現況</strong> 核准設立 <span class="status-badge">稅籍營業中</span></li>
+                    <li><strong>登記地址</strong> 高雄市鳥松區澄湖路208巷3號4樓之2</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心技術 / 服務項目 -->
+    <section id="services" style="background-color: #f4f6f7; max-width: 100%;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">我們的核心技術</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🧱</div>
+                    <h3>專業砌磚牆</h3>
+                    <p>不論是隔間牆、外牆或基礎結構，施工橫平豎直、砂漿飽滿，確保牆體兼顧與耐震安全。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📐</div>
+                    <h3>精緻地磚鋪設</h3>
+                    <p>注重平整度、對線縫隙與整體美觀。嚴格把關打底與貼磚工序，拒絕空鼓與高低差。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💎</div>
+                    <h3>大理石高等鋪設</h3>
+                    <p>高難度天然石材對花、鋪設及無縫處理。完美展現大理石的奢華質感與工藝技術。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 人才招募特區 -->
+    <section id="recruitment">
+        <h2 class="section-title">大高雄徵才找工作</h2>
+        
+        <div class="jobs-section">
+            <div class="jobs-header">
+                <h3>誠徵：學徒 / 半師 / 師傅</h3>
+                <span class="job-tag">擴大徵才中</span>
+            </div>
+            
+            <div class="jobs-grid">
+                <div class="job-details">
+                    <h4>工作說明</h4>
+                    <ul>
+                        <li><strong>工作內容：</strong> 砌磚牆、地磚鋪設、大理石鋪設。</li>
+                        <li><strong>上班時間：</strong> 08:00 - 17:00（中午休息 1 小時，供中餐與涼水）。</li>
+                        <li><strong>休假制度：</strong> 月休 4 日（採彈性排休安排）。</li>
+                        <li><strong>薪資待遇：</strong> 學徒底薪 <strong>$1,600 元 / 日</strong>（師傅薪資依經驗電話詳談面議）。</li>
+                        <li><strong>發薪日期：</strong> 每月 10 號準時發薪。</li>
+                    </ul>
+                </div>
+                
+                <div class="job-welfare">
+                    <h4>福利與津貼</h4>
+                    <ul>
+                        <li><strong>工作地點：</strong> 依實際工程地點而定（多半在南部區域）。</li>
+                        <li><strong>外縣市加給：</strong> 南部以外地區（如花東、台南以北）工作另有津貼加給。</li>
+                        <li><strong>全額全補：</strong> 配合工程如需外宿，全額住宿費由工程行全負擔。</li>
+                        <li><strong>貼心接送：</strong> 高雄居住者佳！如需通勤接送，可於早上 07:00 前至「左營高鐵站」附近搭乘公務車（詳細地點錄取後告知）。</li>
+                        <li><strong>常態福利：</strong> 享有節慶獎金或精美禮品、不定期團隊聚餐。</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="rule-box">
+                ⚠️ 工作期間嚴格規定：不酒、不毒！維護工地安全與團隊專業形象。歡迎有經驗、無經驗但肯學肯拚的兄弟一起加入我們！
+            </div>
+        </div>
+    </section>
+
+    <!-- 應徵與洽詢表單 -->
+    <section id="contact" style="background-color: #1a252f; max-width: 100%;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title" style="color: #fff;">應徵與工程洽詢</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>聯絡資訊</h3>
+                    <p style="margin-bottom: 25px; color: #bdc3c7;">不論您是想應徵加入團隊，還是業主有砌磚、鋪磚需求，歡迎填寫右側表單或直接與我們聯絡。</p>
+                    <div class="contact-details">
+                        <p><span>📍</span>&nbsp; <strong>地址：</strong> 高雄市鳥松區澄湖路208巷3號4樓之2</p>
+                        <p><span>📂</span>&nbsp; <strong>統一編號：</strong> 00849199</p>
+                        <p><span>📱</span>&nbsp; <strong>應徵/洽詢電話：</strong> 面試與詳細位置請先透過電話詳談</p>
+                        <p><span>⏰</span>&nbsp; <strong>聯絡時間：</strong> 週一至週日 08:00 - 20:00</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form onsubmit="alert('您的應徵/洽詢資料已送出！我們將會盡快與您電話聯絡。'); return false;">
+                        <div class="form-group">
+                            <label>您的姓名</label>
+                            <input type="text" placeholder="請輸入姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <label>聯絡電話</label>
+                            <input type="tel" placeholder="請輸入手機號碼" required>
+                        </div>
+                        <div class="form-group">
+                            <label>您的類別</label>
+                            <select required>
+                                <option value="">-- 請選擇需求 --</option>
+                                <option value="學徒應徵">我想應徵學徒 (日薪1600起)</option>
+                                <option value="師傅應徵">我想應徵師傅/半師</option>
+                                <option value="工程發包">我有工程/泥作項目想發包洽詢</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>簡短備註 (選填)</label>
+                            <textarea rows="3" placeholder="例如：居住左營需要接送、預計何時可上班、或工程坪數..."></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="border: none; width: 100%; cursor: pointer; font-size: 17px;">送出聯絡資料</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>&copy; 2026 振慶工程行 版權所有. 代表人: 黃慶暉 | 專營砌磚、地磚、大理石鋪設</p>
+    </footer>
+
+</body>
+</html>
